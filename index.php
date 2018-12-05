@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>PASA Contact List</title>
+	<script src="js/sorttable.js"></script>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -17,9 +18,8 @@
 	<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
 
 </head>
-
 <!-- use "theme-invert" class on bright backgrounds, also try "text-shadows" class -->
-<body class="theme-invert">
+<body class="text-shadows">
 	<div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
 	  <div class="modal-dialog">
 	    <!-- Modal content-->
@@ -72,7 +72,8 @@
 <section class="section" id="search">
 	<div class="container">
 	 <br />
-	 <h2 align="center">Contact Search</h2><br/>
+	 <h1 class="title" align="center">Contact Search</h1><br/>
+	 <h2 class="subtitle2" align="center">Double click cell to edit</h2><br/>
 	 <div class="form-group">
 		<div class="input-group">
 		 <span class="input-group-addon">Search</span>
@@ -80,7 +81,8 @@
 		</div>
 	 </div>
 	 <br />
-	 <table id="data_table" class="table active table-striped table-bordered">
+	 <div style="overflow-x:auto;">
+	 <table id="data_table" class="table sortable table-striped table-bordered">
  		<thead>
  			<tr>
  				<th>Id</th>
@@ -118,8 +120,8 @@
             <td><?php echo $row ['contact_id']; ?></td>
             <td><?php echo $row ['mfr_name']; ?></td>
             <td><?php echo $row ['first_name']; ?></td>
- 			     <td><?php echo $row ['last_name']; ?></td>
- 			     <td><?php echo $row ['role']; ?></td>
+ 			      <td><?php echo $row ['last_name']; ?></td>
+ 			      <td><?php echo $row ['role']; ?></td>
             <td><?php echo $row ['email_address']; ?></td>
             <td><?php echo $row ['phone_number']; ?></td>
             <td><?php echo $row ['phone_number_ext']; ?></td>
@@ -130,6 +132,7 @@
  			<?php } ?>
  		</tbody>
      </table>
+	 </div>
  	<div style="margin:50px 0px 0px 0px;"></div>
 	</div>
 </section>
@@ -137,12 +140,13 @@
 <!-- (insert) section -->
 <section class="section" id="insert">
 	<div class="container">
-	  <div id="form">
+  <h1 class="title" align="center">Add Contact</h1><br/>
+		<div id="form">
 	  <div class="container-fluid">
 	  <div class="form-group">
 	    <label class="col-sm-3 control-label">Manufacturer</label>
 	      <div class="col-sm-3">
-	       <select class="selectpicker" data-live-search="true" data-width="auto">
+	       <select class="selectpicker" data-live-search="true" data-width="819px">
 					 <?php
 
  	        include 'php/connect.php';
