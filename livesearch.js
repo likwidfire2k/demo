@@ -37,7 +37,7 @@ $('#myModal').modal('show');
  // AJAX Code To Submit Form.
  $.ajax({
  type: "POST",
- url: "../Magister/php/submit.php",
+ url: "../Master/php/submit.php",
  data: dataString,
  cache: false,
  success: function(result){
@@ -61,7 +61,7 @@ $("#login").click(function(){
   {
       $.ajax({
         type:"POST",
-        url: "../Magister/php/login.php",
+        url: "../Master/php/login.php",
         data: {username: username, password: password},
         cache: false,
         success:function(result){
