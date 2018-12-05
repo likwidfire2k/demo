@@ -1,30 +1,13 @@
 $(document).ready(function(){
-  load_data();
+//  load_data();
 
-
- function load_data(query)
- {
-  $.ajax({
-   url: 'fetch.php',
-   method:"POST",
-   data:{query:query},
-   success:function(data)
-   {
-    $('#result').html(data);
-   }
+$("#search_text").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#search_me tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
   });
- }
- $('#search_text').keyup(function(){
-  var search = $(this).val();
-  if(search != '')
-  {
-   load_data(search);
-  }
-  else
-  {
-   load_data();
-  }
- });
+
 
 $('#myModal').modal('show');
 
@@ -54,7 +37,7 @@ $('#myModal').modal('show');
  // AJAX Code To Submit Form.
  $.ajax({
  type: "POST",
- url: "submit.php",
+ url: "../Magister/php/submit.php",
  data: dataString,
  cache: false,
  success: function(result){
@@ -78,7 +61,7 @@ $("#login").click(function(){
   {
       $.ajax({
         type:"POST",
-        url: "login.php",
+        url: "../Magister/php/login.php",
         data: {username: username, password: password},
         cache: false,
         success:function(result){
@@ -93,3 +76,15 @@ $("#login").click(function(){
         return false;
       };
     });
+
+    $('#data_table').Tabledit({
+  		deleteButton: false,
+  		editButton: false,
+  		columns: {
+  		  identifier: [0, 'contact_id'],
+  		  editable: [[2, 'first_name'], [3, 'last_name'], [4, 'role'],[5, 'email_address'],[6, 'phone_number'],[7, 'phone_number_ext'],
+  			[8, 'alt_phone_number'],[9, 'alt_phone_number_ext'],[10, 'mfr_address'],[11, 'mfr_address_alt']]
+  		},
+  		hideIdentifier: true,
+  		url: '../Master/php/live_edit.php'
+  	});
