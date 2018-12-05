@@ -72,15 +72,65 @@
 <section class="section" id="search">
 	<div class="container">
 	 <br />
-	 <h2 align="center">Contact Search</h2><br />
+	 <h2 align="center">Contact Search</h2><br/>
 	 <div class="form-group">
 		<div class="input-group">
 		 <span class="input-group-addon">Search</span>
-		 <input type="text" name="search_text" id="search_text" placeholder="Search" class="form-control" />
+		 <input type="text" name="search_text" id="search_text" placeholder="Search by name or manufacturer" class="form-control" />
 		</div>
 	 </div>
 	 <br />
-	 <div id="result"></div>
+	 <table id="data_table" class="table active table-striped table-bordered">
+ 		<thead>
+ 			<tr>
+ 				<th>Id</th>
+         <th>Manufacturer</th>
+ 				<th>First Name</th>
+ 				<th>Last Name</th>
+ 				<th>Role</th>
+         <th>Email</th>
+         <th>Phone Number</th>
+         <th>Ext.</th>
+         <th>Alternate Phone Number</th>
+         <th>Alternate ext.</th>
+         <th>Address</th>
+ 			</tr>
+ 		</thead>
+ 		<tbody id="search_me">
+ 			<?php
+			include 'php/connect.php';
+ 			$query = "SELECT mfc.contact_id, mfr.mfr_name, mfa.mfr_address, mfc.first_name, mfc.last_name, mfc.role, mfe.email_address,  mfp.phone_number, mfp.phone_number_ext, mfp.alt_phone_number, mfp.alt_phone_number_ext
+             FROM mfr_contact_junct mfcj
+             LEFT JOIN mfr_contact mfc ON mfcj.contact_id = mfc.contact_id
+             LEFT JOIN contact_address_junct mcaj ON mfc.contact_id = mcaj.contact_id
+             LEFT JOIN manufacturer mfr ON mfr.mfr_id = mfcj.mfr_id
+             LEFT JOIN mfr_address mfa ON mcaj.mfr_address_id = mfa.mfr_address_id
+             LEFT JOIN mfr_email mfe ON mfe.email_id = mfc.contact_id
+             LEFT JOIN mfr_phone mfp ON mfp.phone_id = mfc.contact_id
+
+       ";
+       $resultset = $link->prepare($query);
+       $resultset->execute();
+
+ 			while($row = $resultset->fetch(PDO::FETCH_ASSOC)) {
+ 			?>
+ 			   <tr class= "active" id="<?php echo $row ['contact_id']; ?>">
+            <td><?php echo $row ['contact_id']; ?></td>
+            <td><?php echo $row ['mfr_name']; ?></td>
+            <td><?php echo $row ['first_name']; ?></td>
+ 			     <td><?php echo $row ['last_name']; ?></td>
+ 			     <td><?php echo $row ['role']; ?></td>
+            <td><?php echo $row ['email_address']; ?></td>
+            <td><?php echo $row ['phone_number']; ?></td>
+            <td><?php echo $row ['phone_number_ext']; ?></td>
+            <td><?php echo $row ['alt_phone_number']; ?></td>
+            <td><?php echo $row ['alt_phone_number_ext']; ?></td>
+            <td><?php echo $row ['mfr_address']; ?></td>
+ 			   </tr>
+ 			<?php } ?>
+ 		</tbody>
+     </table>
+ 	<div style="margin:50px 0px 0px 0px;"></div>
 	</div>
 </section>
 
@@ -154,7 +204,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 <!-- Custom template scripts -->
 <script src="assets/js/master.js"></script>
+<script type="text/javascript" src="assets/jquery-tabledit-1.2.3/jquery.tabledit.js"></script>
 <script src="js/livesearch.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+
+
 </body>
 </html>
