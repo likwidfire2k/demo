@@ -1,13 +1,139 @@
 $(document).ready(function(){
 //  load_data();
 
-$("#search_text").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#search_me tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
 
+$('#data_table').bootstrapTable({
+  url: '../contact-list/php/table.php',
+  pagination: true,
+  search: true,
+
+  columns: [{
+    field: 'contact_id',
+    title: 'contact ID',
+		visible: false,
+  }, {
+    field: 'mfr_name',
+    title: 'Manufacturer'
+  }, {
+    field: 'first_name',
+    title: 'First Name',
+		pk: 'contact_id',
+		editable: {
+			 url:'../contact-list/php/live_edit.php',
+			 onblur:'submit',
+			 type: 'text',
+			 title: 'First Name'
+		 }
+
+  },  {
+    field: 'last_name',
+    title: 'Last Name',
+    pk: 'contact_id',
+    editable:{
+      url:'../contact-list/php/live_edit.php',
+      onblur:'submit',
+      type:'text',
+      title:'Last Name'
+    }
+  },  {
+    field: 'role',
+    title: 'Role',
+    pk: 'contact_id',
+    editable:{
+      url:'../contact-list/php/live_edit.php',
+      onblur:'submit',
+      type:'text',
+      title:'Role'
+    }
+  },  {
+    field: 'email_address',
+    title: 'Email',
+    pk: 'contact_id',
+    editable:{
+      url:'../contact-list/php/live_edit.php',
+      onblur:'submit',
+      type:'text',
+      title:'Email'
+    }
+
+  },  {
+    field: 'phone_number',
+    title: 'Phone Number',
+    pk: 'contact_id',
+    editable:{
+      url:'../contact-list/php/live_edit.php',
+      onblur:'submit',
+      type:'text',
+      title:'Phone Number'
+    }
+  },  {
+    field: 'phone_number_ext',
+    title: 'Extension',
+    pk: 'contact_id',
+    editable:{
+      url:'../contact-list/php/live_edit.php',
+      onblur:'submit',
+      type:'text',
+      title:'Extension'
+    }
+  },  {
+    field: 'alt_phone_number',
+    title: 'Alt. Phone Number',
+    pk: 'contact_id',
+    editable:{
+      url:'../contact-list/php/live_edit.php',
+      onblur:'submit',
+      type:'text',
+      title:'Alt. Phone Number'
+    }
+  },  {
+    field: 'alt_phone_number_ext',
+    title: 'Alt. Phone Extension',
+    pk: 'contact_id',
+    editable:{
+      url:'../contact-list/php/live_edit.php',
+      onblur:'submit',
+      type:'text',
+      title:'Alt. Phone Extension'
+    }
+  },  {
+    field: 'mfr_address',
+    title: 'Address',
+    pk: 'contact_id',
+    editable:{
+      url:'../contact-list/php/live_edit.php',
+      onblur:'submit',
+      type:'text',
+      title:'address'
+    }
+  },  {
+    field: 'comment',
+    title: 'Comment',
+    editable:{
+      url:'../contact-list/php/live_edit.php',
+      onblur:'submit',
+      type:'text',
+      title:'Comment'
+    }
+  }, ]
+})
+$('#data_table').on('editable-save.bs.table', function (e, field, row, oldValue) {
+//	console.log(field);
+  //console.log(row);
+  //console.log(oldValue);
+	//console.log(e);
+	$.ajax({
+	type: "POST",
+	url: "../contact-list/php/live_edit.php",
+	data:{field:field, row:row, oldValue:oldValue},
+	cache: false,
+	success: function(result){
+		//alert(result);
+ //$('input[type=text], textarea').val('');
+
+   }
+ });
+});
 
 $('#myModal').modal('show');
 
@@ -21,23 +147,23 @@ $('#myModal').modal('show');
  var alt_phone = $("#alt_phone").val();
  var alt_ext = $("#alt_ext").val();
  var address = $("#address").val();
- var alt_address = $("#alt_address").val();
- var role =$("#role").val();
+  var role =$("#role").val();
+ var comment =$("#comment").val();
  var mfr = $('.selectpicker option:selected').val();
 
  // Returns successful data submission message when the entered information is stored in database.
  var dataString = '&first_name1='+ first_name + '&last_name1=' + last_name +'&email1='+ email + '&phone1='+ phone +'&ext1='+ ext +
- '&address1='+ address + '&alt_address1=' + alt_address+ '&alt_phone1=' + alt_phone + '&alt_ext1='+ alt_ext + '&mfr1='+mfr + '&role1=' + role;
- if(last_name=='')
+ '&address1='+ address + '&alt_phone1=' + alt_phone + '&alt_ext1='+ alt_ext + '&mfr1='+ mfr + '&role1=' + role +'&comment1=' + comment;
+ if(last_name=='' & role=='')
  {
- alert("Please enter Last name");
+ alert("Please enter last name and role");
  }
  else
  {
  // AJAX Code To Submit Form.
  $.ajax({
  type: "POST",
- url: "../Master/php/submit.php",
+ url: "../contact-list/php/submit.php",
  data: dataString,
  cache: false,
  success: function(result){
@@ -61,7 +187,7 @@ $("#login").click(function(){
   {
       $.ajax({
         type:"POST",
-        url: "../Master/php/login.php",
+        url: "../contact-list/php/login.php",
         data: {username: username, password: password},
         cache: false,
         success:function(result){
@@ -76,15 +202,3 @@ $("#login").click(function(){
         return false;
       };
     });
-
-    $('#data_table').Tabledit({
-  		deleteButton: false,
-  		editButton: false,
-  		columns: {
-  		  identifier: [0, 'contact_id'],
-  		  editable: [[2, 'first_name'], [3, 'last_name'], [4, 'role'],[5, 'email_address'],[6, 'phone_number'],[7, 'phone_number_ext'],
-  			[8, 'alt_phone_number'],[9, 'alt_phone_number_ext'],[10, 'mfr_address'],[11, 'mfr_address_alt']]
-  		},
-  		hideIdentifier: true,
-  		url: '../Master/php/live_edit.php'
-  	});
