@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 include('connect.php');
 $query = "SELECT mfc.contact_id, mfc.comment, mfr.mfr_name, mfa.mfr_address, mfc.first_name, mfc.last_name, mfc.role, mfe.email_address,  mfp.phone_number, mfp.phone_number_ext, mfp.alt_phone_number, mfp.alt_phone_number_ext
-      FROM OPPAP_mfr_contact_junct mfcj
+      FROM mfr_contact_junct mfcj
       LEFT JOIN mfr_contact mfc ON mfcj.contact_id = mfc.contact_id
       LEFT JOIN contact_address_junct mcaj ON mfc.contact_id = mcaj.contact_id
       LEFT JOIN manufacturer mfr ON mfr.mfr_id = mfcj.mfr_id
