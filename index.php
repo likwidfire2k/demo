@@ -63,7 +63,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
-				<h1 class="title">PASA SQA Contact List</h1>
+				<h1 class="title">Contact List</h1>
 				<h2 class="subtitle">Add or Search Contacts</h2>
 			</div> <!-- /col -->
 		</div> <!-- /row -->
@@ -99,7 +99,7 @@
 					 <?php
 
 					$path = $_SERVER['DOCUMENT_ROOT'];
- 		      $path .= "/contact-list/php/connect.php";
+ 		      $path .= "connect.php";
  					include($path);
 
  	        $query =$link->prepare("SELECT mfr_name FROM manufacturer ORDER BY mfr_name");
@@ -165,7 +165,7 @@
 <script type="text/javascript" src="js/jquery.tabledit.js"></script>
 
 <div class="footer">
-  <p>VER 1.0.3 by Me</p>
+  <p>by Me</p>
 </div>
 
 </body>
