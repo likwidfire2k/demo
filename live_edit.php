@@ -1,6 +1,6 @@
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'];
-$path .= "/contact-list/php/connect.php";
+$path .= "connect.php";
 include($path);
 $row = $_POST['row'];
 $field = $_POST['field'];
