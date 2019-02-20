@@ -21,9 +21,10 @@
 
 
 </head>
-<!-- use "theme-invert" class on bright backgrounds, also try "text-shadows" class -->
+
 <body class="text-shadows">
-	<!--<div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+	<!--Disabled login modal
+	<div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
 	  <div class="modal-dialog">
 
 	    <div class="modal-content">
@@ -134,7 +135,7 @@
 	<label class="col">address:</label>
 	<input id="address" class="col" type="text">
 	<div class="w-100"></div>
-		<label class="col">Role(*) :</label>
+	<label class="col">Role(*) :</label>
 	<input id="role" class="col" type="text">
 	<label class="col">Comment :</label>
 	<input id="comment" class="col" type="text">
