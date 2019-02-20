@@ -161,7 +161,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/bootstrap-table.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/extensions/editable/bootstrap-table-editable.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-<script src="js/magister.js"></script>
+<script src="js/master.js"></script>
 <script type="text/javascript" src="js/jquery.tabledit.js"></script>
 
 <div class="footer">
