@@ -19,7 +19,7 @@ $('#data_table').bootstrapTable({
     title: 'First Name',
 		pk: 'contact_id',
 		editable: {
-			 url:'../contact-list/php/live_edit.php',
+			 url:'live_edit.php',
 			 onblur:'submit',
 			 type: 'text',
 			 title: 'First Name'
@@ -30,7 +30,7 @@ $('#data_table').bootstrapTable({
     title: 'Last Name',
     pk: 'contact_id',
     editable:{
-      url:'../contact-list/php/live_edit.php',
+      url:'live_edit.php',
       onblur:'submit',
       type:'text',
       title:'Last Name'
@@ -40,7 +40,7 @@ $('#data_table').bootstrapTable({
     title: 'Role',
     pk: 'contact_id',
     editable:{
-      url:'../contact-list/php/live_edit.php',
+      url:'live_edit.php',
       onblur:'submit',
       type:'text',
       title:'Role'
@@ -50,7 +50,7 @@ $('#data_table').bootstrapTable({
     title: 'Email',
     pk: 'contact_id',
     editable:{
-      url:'../contact-list/php/live_edit.php',
+      url:'live_edit.php',
       onblur:'submit',
       type:'text',
       title:'Email'
@@ -61,7 +61,7 @@ $('#data_table').bootstrapTable({
     title: 'Phone Number',
     pk: 'contact_id',
     editable:{
-      url:'../contact-list/php/live_edit.php',
+      url:'live_edit.php',
       onblur:'submit',
       type:'text',
       title:'Phone Number'
@@ -71,7 +71,7 @@ $('#data_table').bootstrapTable({
     title: 'Extension',
     pk: 'contact_id',
     editable:{
-      url:'../contact-list/php/live_edit.php',
+      url:'live_edit.php',
       onblur:'submit',
       type:'text',
       title:'Extension'
@@ -81,7 +81,7 @@ $('#data_table').bootstrapTable({
     title: 'Alt. Phone Number',
     pk: 'contact_id',
     editable:{
-      url:'../contact-list/php/live_edit.php',
+      url:'live_edit.php',
       onblur:'submit',
       type:'text',
       title:'Alt. Phone Number'
@@ -91,7 +91,7 @@ $('#data_table').bootstrapTable({
     title: 'Alt. Phone Extension',
     pk: 'contact_id',
     editable:{
-      url:'../contact-list/php/live_edit.php',
+      url:'live_edit.php',
       onblur:'submit',
       type:'text',
       title:'Alt. Phone Extension'
@@ -101,7 +101,7 @@ $('#data_table').bootstrapTable({
     title: 'Address',
     pk: 'contact_id',
     editable:{
-      url:'../contact-list/php/live_edit.php',
+      url:'live_edit.php',
       onblur:'submit',
       type:'text',
       title:'address'
@@ -110,7 +110,7 @@ $('#data_table').bootstrapTable({
     field: 'comment',
     title: 'Comment',
     editable:{
-      url:'../contact-list/php/live_edit.php',
+      url:'live_edit.php',
       onblur:'submit',
       type:'text',
       title:'Comment'
@@ -118,19 +118,14 @@ $('#data_table').bootstrapTable({
   }, ]
 })
 $('#data_table').on('editable-save.bs.table', function (e, field, row, oldValue) {
-//	console.log(field);
-  //console.log(row);
-  //console.log(oldValue);
-	//console.log(e);
+
 	$.ajax({
 	type: "POST",
-	url: "../contact-list/php/live_edit.php",
+	url: "live_edit.php",
 	data:{field:field, row:row, oldValue:oldValue},
 	cache: false,
 	success: function(result){
-		//alert(result);
- //$('input[type=text], textarea').val('');
-
+		
    }
  });
 });
@@ -187,17 +182,14 @@ $("#login").click(function(){
   {
       $.ajax({
         type:"POST",
-        url: "../contact-list/php/login.php",
+        url: "login.php",
         data: {username: username, password: password},
         cache: false,
         success:function(result){
           alert(result);
           $('#myModal').modal('hide');
         }
-        /*error:function(result){
-              alert(result);
-              $('#myModal').modal('show');
-            }*/
+       
       });
         return false;
       };
