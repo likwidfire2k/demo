@@ -1,5 +1,5 @@
 html {
-	background:#505D6E url(../images/action-asphalt-back-light-315938.jpg) no-repeat center center fixed;
+	background:#505D6E url(something.jpg) no-repeat center center fixed;
 	min-height:100%;
 	-webkit-background-size: cover;
 	   -moz-background-size: cover;
@@ -258,26 +258,12 @@ float: left;}
 
 
 /********************************************************/
-/*                 Everything else                      */
+/*                 table                    */
 /********************************************************/
 
-.list-social .btn {
-	font-size:1.3em;
-}
-.list-social .btn:hover, .list-social .btn:active, .list-social .btn:focus {
-	text-decoration: none;
-}
 
 
-/* Social buttons in the footer */
-#social {
-	margin-top:50px;
-	margin-bottom:50px;
-}
-#social .wrapper {
-	width:340px;
-	margin:0 auto;
-}
+
 table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
     content: " \25B4\25BE"
 }
