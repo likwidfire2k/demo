@@ -20,7 +20,6 @@ $contactID = null;
 $phoneID = null;
 $addressID = null;
 
-//print_r($mfr2);
 
 
 $query = $link->prepare('SELECT mfr_id FROM manufacturer WHERE mfr_name = :man_name;');
@@ -29,16 +28,7 @@ $query->execute();
 
 $mfrID = $query -> fetch(PDO::FETCH_NUM);
 $mfrhold = $mfrID[0];
-//print_r($mfrhold);
-/*if (empty($mfrID)){
-  $query = $link->prepare('INSERT INTO manufacturer(mfr_name) VALUES (:man_name);');
-  $query->bindParam(':man_name', $mfr2, PDO::PARAM_STR);
-  $query->execute();
-  $query = $link->prepare('SELECT TOP 1 mfr_id from manufacturer ORDER BY mfr_id DESC');
-  $query->execute();
-  $mfrID = $query->fetch(PDO::FETCH_NUM);
-  $mfrhold = $mfrID[0];
-}*/
+
 
 
 
